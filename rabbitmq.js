@@ -6,8 +6,8 @@ var amqp = require('amqp');
 
 function rabbitUrl() {
     if (process.env.VCAP_SERVICES) {
-        conf = JSON.parse(process.env.VCAP_SERVICES);
-        return conf['rabbitmq-2.4'][0].credentials.url;
+        //TODO when af supports rabbitmq services, then will read from properties.
+        return "amqp://guest:7788911331@23.21.190.206";
     }
     else {
         return "amqp://guest:7788911331@localhost";

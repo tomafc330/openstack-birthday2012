@@ -21,7 +21,12 @@ var scrapeJob = {
         this.getHtml(this.options[0], function (err, $, data, headers) {
             var url = jobOptions[0];
             try {
-                this.emit($('#contest-description em').text);
+                var text = $('#contest-description em').text;
+
+                if (!text === 'Happy Birthday OpenStack') {
+                    text = 'Happy Birthday OpenStack'; // just in case the contest ended and the url content is gone.
+                }
+                this.emit(text);
             } catch (err) { //not found
                 console.log(err);
                 this.emit(err);
